@@ -2,10 +2,10 @@ package mediator;
 
 import iterator.VehicleDepot;
 import iterator.VehicleIterator;
-import main.Building;
 import main.Floor;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class CentralFireDepartment implements ICentralFireDepartment {
 
@@ -28,7 +28,7 @@ public class CentralFireDepartment implements ICentralFireDepartment {
                     System.out.println("Kein Normaler da Sende von Depot 2");
                 }
             }
-        }
+        } else
     // Hazard Class 1 + Etage 3
         if (floor.getBuilding().getBuildingId() <= 3 && floor.getBuilding().getHazardClass() < 2 && floorAlarmListAll.get(floor.getBuilding().getBuildingId()) < 3) {
             for (int i = 0; i < floorAlarmListAll.get(floor.getBuilding().getBuildingId()); i++) {
@@ -44,9 +44,7 @@ public class CentralFireDepartment implements ICentralFireDepartment {
             }else {
                 System.out.println("Kein Normaler da Sende von Depot 2");
             }
-        }
-
-
+        }else
         // Hazard Class 2 + Etage 1
         if (floor.getBuilding().getBuildingId() > 3 && floor.getBuilding().getHazardClass() >= 2) {
 
@@ -56,7 +54,10 @@ public class CentralFireDepartment implements ICentralFireDepartment {
             } else {
                 System.out.println("Kein Normaler da Sende von Depot 1");
             }
+        } else {
+            System.out.println("nothing");
         }
+
     }
 
 
@@ -70,11 +71,17 @@ public class CentralFireDepartment implements ICentralFireDepartment {
     }
 
     public void requestTruck(Floor floor) {
-        registerTrucks(floor);
+        try {
+            registerTrucks(floor);
+            Thread.sleep(1); //TODO change to 1 sec
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void print() {
+    public void print()  {
         System.out.println(floorAlarmListAll.toString());
+
     }
 
 }
