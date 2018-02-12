@@ -9,5 +9,4 @@ public class FireDepartment implements ISmokeDetectorListener {
     public void turnOut(String location){
         System.out.println("turned out : " + location);
     }
-
 }
