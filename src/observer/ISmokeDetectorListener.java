@@ -1,5 +1,11 @@
 package observer;
 
+import main.Floor;
+
+import java.util.HashMap;
+
 public interface ISmokeDetectorListener {
-    void fireIgnited(String location);
+
+    //getNotified#
+    void fireIgnited(Floor location);
 }

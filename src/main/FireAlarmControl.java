@@ -1,13 +1,17 @@
 package main;
 
+import observer.ISmokeDetectorListener;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FireAlarmControl {
+public class FireAlarmControl implements ISmokeDetectorListener {
     private Building building;
+    private ArrayList<ISmokeDetectorListener> listeners = new ArrayList<>();
 
 
-    public FireAlarmControl(Building building) {
-        this.building = building;
+    public FireAlarmControl() {
+
     }
 
     private HashMap<Integer,Integer> generateFloorAlarmList(){
@@ -22,4 +26,20 @@ public class FireAlarmControl {
         HashMap<Integer,Integer> list = generateFloorAlarmList();
         return list;
     }
+
+    public void addListener(ISmokeDetectorListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(ISmokeDetectorListener listener) {
+        listeners.remove(listener);
+    }
+
+
+    @Override
+    public void fireIgnited(Floor location) {
+        for (ISmokeDetectorListener listener : listeners)
+            listener.fireIgnited(location);
+    }
+
 }

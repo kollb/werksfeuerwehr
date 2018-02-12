@@ -1,23 +1,45 @@
 package main;
 
+import observer.SmokeDetector;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Application {
 
 
     public static void main(String... args) {
-        // Create Buildings and "Brandmeldezentrale"
+        // Create Buildings and "Brandmeldezentrale" BMZ
         Building B1 = new Building("B1",1,2);
-        FireAlarmControl F1 = new FireAlarmControl(B1);
         Building B2 = new Building("B2",2,3);
-        FireAlarmControl F2 = new FireAlarmControl(B2);
         Building B3 = new Building("B3",3,1);
-        FireAlarmControl F3 = new FireAlarmControl(B3);
         Building B4 = new Building("B4",4,2);
-        FireAlarmControl F4 = new FireAlarmControl(B4);
         Building B5 = new Building("B5",5,2);
-        FireAlarmControl F5 = new FireAlarmControl(B5);
         Building B6 = new Building("B6",6,3);
-        FireAlarmControl F6 = new FireAlarmControl(B6);
 
+        FireDepartment F1 = new FireDepartment();
+        FireDepartment F2 = new FireDepartment();
+
+        B1.registerFireDep(F1);
+        B2.registerFireDep(F1);
+        B3.registerFireDep(F1);
+        B4.registerFireDep(F2);
+        B5.registerFireDep(F2);
+        B6.registerFireDep(F2);
+
+        //create Random Fire Alerts
+        List<Building> buildings = new ArrayList<>();
+        buildings.add(B1);
+        buildings.add(B2);
+        buildings.add(B3);
+        buildings.add(B4);
+        buildings.add(B5);
+        buildings.add(B6);
+        Collections.shuffle(buildings);
+        for (Building building: buildings.subList(0,2)){
+            building.randomFire();
+        }
 
     }
 }
