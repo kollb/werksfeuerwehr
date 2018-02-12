@@ -9,9 +9,9 @@ public class Building {
     private FireAlarmControl fireAlarmControl;
 
     public Building(String buildingName, int buildingId, int hazardClass) {
-        this.floor1 = new Floor("Floor 1", this);
-        this.floor2 = new Floor("Floor 2", this);
-        this.floor3 = new Floor("Floor 3", this);
+        this.floor1 = new Floor("Floor 1", this,1);
+        this.floor2 = new Floor("Floor 2", this,2);
+        this.floor3 = new Floor("Floor 3", this,3);
         this.buildingName = buildingName;
         this.buildingId = buildingId;
         this.hazardClass = hazardClass;
@@ -74,17 +74,17 @@ public class Building {
         this.buildingName = buildingName;
     }
 
-    public void randomFire(){
+    public void randomFire() {
         MersenneTwisterFast random = new MersenneTwisterFast();
-        int floorsOnFire = random.nextInt(1,3);
-        if (floorsOnFire==1){
+        int floorsOnFire = random.nextInt(1, 3);
+        if (floorsOnFire == 1) {
             floor1.setOnFire(true);
         }
-        if (floorsOnFire==2){
+        if (floorsOnFire == 2) {
             floor1.setOnFire(true);
             floor2.setOnFire(true);
-            }
-        if (floorsOnFire==3){
+        }
+        if (floorsOnFire == 3) {
             floor1.setOnFire(true);
             floor2.setOnFire(true);
             floor3.setOnFire(true);

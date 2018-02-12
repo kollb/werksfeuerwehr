@@ -1,7 +1,8 @@
 package mediator;
 
-import main.Building;
+
+import main.Floor;
 
 public interface ICentralFireDepartment {
-    void registerTrucks(Building building);
+    void registerTrucks(Floor floor);
 }

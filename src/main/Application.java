@@ -1,5 +1,6 @@
 package main;
 
+import mediator.CentralFireDepartment;
 import observer.SmokeDetector;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Application {
 
 
     public static void main(String... args) {
+
         // Create Buildings and "Brandmeldezentrale" BMZ
         Building B1 = new Building("B1",1,2);
         Building B2 = new Building("B2",2,3);
@@ -18,8 +20,10 @@ public class Application {
         Building B5 = new Building("B5",5,2);
         Building B6 = new Building("B6",6,3);
 
-        FireDepartment F1 = new FireDepartment();
-        FireDepartment F2 = new FireDepartment();
+
+        CentralFireDepartment CFD = new CentralFireDepartment();
+        FireDepartment F1 = new FireDepartment(CFD);
+        FireDepartment F2 = new FireDepartment(CFD);
 
         B1.registerFireDep(F1);
         B2.registerFireDep(F1);
@@ -40,6 +44,8 @@ public class Application {
         for (Building building: buildings.subList(0,2)){
             building.randomFire();
         }
+
+        CFD.print();
 
     }
 }

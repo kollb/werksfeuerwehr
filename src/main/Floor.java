@@ -10,10 +10,15 @@ public class Floor {
     private Building building;
 
 
-    public Floor(String floorName, Building building) {
+
+    private int id;
+
+
+    public Floor(String floorName, Building building,int id) {
         this.floorName = floorName;
         this.isOnFire = false;
         this.building = building;
+        this.id = id;
         }
     public void installSmokeDetector() {
         this.smokeDetector = new SmokeDetector(this);
@@ -44,5 +49,9 @@ public class Floor {
 
     public Building getBuilding() {
         return building;
+    }
+
+    public int getId() {
+        return id;
     }
 }
