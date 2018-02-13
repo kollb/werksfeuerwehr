@@ -9,18 +9,18 @@ public class VehicleIterator implements IIterator {
     private int indexNormalFireTruck;
     private int indexSpecialFireTruck;
 
-    public VehicleIterator(VehicleDepot vehicleDepot){
-        this.vehicleDepot=vehicleDepot;
-        this.indexNormalFireTruck=0;
-        this.indexSpecialFireTruck=0;
+    public VehicleIterator(VehicleDepot vehicleDepot) {
+        this.vehicleDepot = vehicleDepot;
+        this.indexNormalFireTruck = 0;
+        this.indexSpecialFireTruck = 0;
     }
 
     public boolean hasNextNormalFireTruck() {
-        return indexNormalFireTruck < vehicleDepot.getMaxNormalTrucks();
+        return indexNormalFireTruck < vehicleDepot.getNumberNormalTrucks();
     }
 
     public boolean hasNextSpecialFireTruck() {
-        return indexSpecialFireTruck<vehicleDepot.getMaxNormalTrucks();
+        return indexSpecialFireTruck < vehicleDepot.getNumberNormalTrucks();
     }
 
     public Object nextNormalFiretruck() {
