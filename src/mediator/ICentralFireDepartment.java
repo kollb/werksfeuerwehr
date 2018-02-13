@@ -3,6 +3,8 @@ package mediator;
 
 import main.Floor;
 
+import java.util.List;
+
 public interface ICentralFireDepartment {
-    void registerTrucks(Floor floor);
+    List<Object> registerTrucks(Floor floor);
 }

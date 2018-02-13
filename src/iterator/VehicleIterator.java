@@ -20,17 +20,17 @@ public class VehicleIterator implements IIterator {
     }
 
     public boolean hasNextSpecialFireTruck() {
-        return indexSpecialFireTruck < vehicleDepot.getNumberNormalTrucks();
+        return indexSpecialFireTruck < vehicleDepot.getNumberSpecialTrucks();
     }
 
     public Object nextNormalFiretruck() {
-        NormalFireTruck normalFireTruck = vehicleDepot.getNormalFireTruck();
+        Object normalFireTruck = vehicleDepot.getNormalFireTruck();
         indexNormalFireTruck++;
         return normalFireTruck;
     }
 
     public Object nextSpecialFiretruck() {
-        SpecialFireTruck specialFireTruck = vehicleDepot.getSpecialFireTruck();
+        Object specialFireTruck = vehicleDepot.getSpecialFireTruck();
         indexSpecialFireTruck++;
         return specialFireTruck;
     }

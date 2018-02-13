@@ -9,9 +9,10 @@ import java.util.Collections;
 
 public class VehicleDepot implements IAggregate {
 
-    private ArrayList<NormalFireTruck> normalFireTrucks = new ArrayList<>();
-    private ArrayList<SpecialFireTruck> specialFireTrucks = new ArrayList<>();
+    private ArrayList<Object> normalFireTrucks = new ArrayList<>();
+    private ArrayList<Object> specialFireTrucks = new ArrayList<>();
     private int numberNormalTrucks = 4;
+
     private int numberSpecialTrucks = 2;
     private int maxNormalTrucks = 4;
     private int maxSpecialTrucks = 2;
@@ -20,33 +21,36 @@ public class VehicleDepot implements IAggregate {
     public VehicleDepot(int depotNumber) {
         for (int i = 0; i < maxNormalTrucks; i++) normalFireTrucks.add(new NormalFireTruck(true, depotNumber));
         for (int i = 0; i < maxSpecialTrucks; i++) specialFireTrucks.add(new SpecialFireTruck(true, depotNumber));
-
     }
 
-    public NormalFireTruck getNormalFireTruck() {
-        NormalFireTruck temp = normalFireTrucks.get(numberNormalTrucks - 1);
+    public Object getNormalFireTruck() {
+        Object temp = normalFireTrucks.get(numberNormalTrucks - 1);
         normalFireTrucks.remove(numberNormalTrucks - 1);
         numberNormalTrucks--;
         return temp;
     }
 
-    public SpecialFireTruck getSpecialFireTruck() {
-        SpecialFireTruck temp = specialFireTrucks.get(numberSpecialTrucks - 1);
-        normalFireTrucks.remove(numberSpecialTrucks - 1);
+    public Object getSpecialFireTruck() {
+        Object temp = specialFireTrucks.get(numberSpecialTrucks - 1);
+        specialFireTrucks.remove(numberSpecialTrucks - 1);
         numberSpecialTrucks--;
         return temp;
     }
 
-    public void returnVehicle(NormalFireTruck fireTruck) {
-        normalFireTrucks.add(fireTruck);
-        numberNormalTrucks++;
+    public int getNumberSpecialTrucks() {
+        return numberSpecialTrucks;
     }
 
-    public void returnVehicle(SpecialFireTruck fireTruck) {
-        specialFireTrucks.add(fireTruck);
-        numberSpecialTrucks++;
+    public void returnVehicle(Object fireTruck) {
+        if (fireTruck instanceof NormalFireTruck) {
+            normalFireTrucks.add(fireTruck);
+            numberNormalTrucks++;
+        }
+        if (fireTruck instanceof SpecialFireTruck) {
+            specialFireTrucks.add(fireTruck);
+            numberSpecialTrucks++;
+        }
     }
-
 
     public int getMaxNormalTrucks() {
         return maxNormalTrucks;
@@ -60,11 +64,11 @@ public class VehicleDepot implements IAggregate {
         return new VehicleIterator(this);
     }
 
-    public ArrayList<NormalFireTruck> getNormalFireTrucks() {
+    public ArrayList<Object> getNormalFireTrucks() {
         return normalFireTrucks;
     }
 
-    public ArrayList<SpecialFireTruck> getSpecialFireTrucks() {
+    public ArrayList<Object> getSpecialFireTrucks() {
         return specialFireTrucks;
     }
 

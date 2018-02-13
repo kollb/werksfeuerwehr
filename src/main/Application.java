@@ -10,15 +10,15 @@ import java.util.List;
 public class Application {
 
 
-    public static void main(String... args) {
+    public static void main(String... args) throws InterruptedException {
 
         // Create Buildings and "Brandmeldezentrale" BMZ
-        Building B1 = new Building("B1",1,2);
-        Building B2 = new Building("B2",2,3);
-        Building B3 = new Building("B3",3,1);
-        Building B4 = new Building("B4",4,2);
-        Building B5 = new Building("B5",5,2);
-        Building B6 = new Building("B6",6,3);
+        Building B1 = new Building("B1", 1, 2);
+        Building B2 = new Building("B2", 2, 3);
+        Building B3 = new Building("B3", 3, 1);
+        Building B4 = new Building("B4", 4, 2);
+        Building B5 = new Building("B5", 5, 2);
+        Building B6 = new Building("B6", 6, 3);
 
 
         CentralFireDepartment CFD = new CentralFireDepartment();
@@ -40,12 +40,23 @@ public class Application {
         buildings.add(B4);
         buildings.add(B5);
         buildings.add(B6);
-        Collections.shuffle(buildings);
-        for (Building building: buildings.subList(0,2)){
-            building.randomFire();
+
+        for (int i = 0 ; i < 50;i++) {
+            System.out.println(" New Alarm!");
+            Collections.shuffle(buildings);
+            for (Building building : buildings.subList(0, 2)) {
+                new Thread(()-> building.randomFire()).start();
+
+            }
+            try {
+
+                Thread.sleep(5000); //TODO check for 5sec
+
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+
+            }
         }
 
-        CFD.print();
-
-    }
-}
+}}

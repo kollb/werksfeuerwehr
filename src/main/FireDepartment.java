@@ -16,7 +16,7 @@ public class FireDepartment  implements ISmokeDetectorListener{
 
     @Override
     public void fireIgnited(Floor location) {
-        System.out.println("Building "+ location.getBuilding().getBuildingName()+ " on "+location.getFloorName()+ " is on fire!");
+        System.out.println(" --- Building "+ location.getBuilding().getBuildingName()+ " on "+location.getFloorName()+ " is on fire! ---");
         command.getAlarm(location);
     }
 }
