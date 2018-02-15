@@ -24,10 +24,10 @@ public class VehicleDepot implements IAggregate {
     }
 
     public Object getNormalFireTruck() {
-        Object temp = normalFireTrucks.get(numberNormalTrucks - 1);
-        normalFireTrucks.remove(numberNormalTrucks - 1);
-        numberNormalTrucks--;
-        return temp;
+            Object temp = normalFireTrucks.get(numberNormalTrucks - 1);
+            normalFireTrucks.remove(numberNormalTrucks - 1);
+            numberNormalTrucks--;
+            return temp;
     }
 
     public Object getSpecialFireTruck() {

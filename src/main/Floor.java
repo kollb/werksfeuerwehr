@@ -8,18 +8,15 @@ public class Floor {
     private SmokeDetector smokeDetector;
     private boolean isOnFire;
     private Building building;
-
-
-
     private int id;
 
-
-    public Floor(String floorName, Building building,int id) {
+    public Floor(String floorName, Building building, int id) {
         this.floorName = floorName;
         this.isOnFire = false;
         this.building = building;
         this.id = id;
-        }
+    }
+
     public void installSmokeDetector() {
         this.smokeDetector = new SmokeDetector(this);
     }
@@ -28,9 +25,6 @@ public class Floor {
         return floorName;
     }
 
-    public void setFloorName(String floorName) {
-        this.floorName = floorName;
-    }
 
     public boolean isOnFire() {
         return isOnFire;
@@ -38,7 +32,7 @@ public class Floor {
 
     public void setOnFire(boolean onFire) {
         isOnFire = onFire;
-        if(onFire) {
+        if (onFire) {
             smokeDetector.sendAlarm();
         }
     }

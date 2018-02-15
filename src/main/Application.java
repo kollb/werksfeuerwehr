@@ -1,16 +1,18 @@
 package main;
 
 import mediator.CentralFireDepartment;
-import observer.SmokeDetector;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
 
 
     public static void main(String... args) {
+
 
         // Create Buildings
         Building B1 = new Building("B1", 1, 2);
@@ -42,17 +44,16 @@ public class Application {
         buildings.add(B5);
         buildings.add(B6);
 
-        for (int i = 0 ; i < 10;i++) {
-            System.out.println(" New Alarm!");
+        for (int i = 0 ; i < 50;i++) {
+            System.out.println(ANSI_RED + " -------------- NEW ALARM! --------------" + ANSI_RESET);
             Collections.shuffle(buildings);
-            for (Building building : buildings.subList(0, 2)) {
-                //needed concurrency unless sequential execution of method was wanted
+            // BlackAlert when subList(0,3)
+            for (Building building : buildings.subList(0,2)) {
                 new Thread(()-> building.randomFire()).start();
+                //building.randomFire();
             }
             try {
-
-                Thread.sleep(5000); //TODO check for 5sec
-
+                Thread.sleep(5000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
